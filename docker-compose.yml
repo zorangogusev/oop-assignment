@@ -1,0 +1,21 @@
+version: "3.2"
+services:
+    oop-assignment:
+        build:
+            context: ./
+            dockerfile: .docker/dev/Dockerfile
+        container_name: oop-assignment
+        networks:
+          oop_assignment_net:
+            ipv4_address: 172.172.223.100
+        volumes:
+            - ./:/var/www/html/
+        tty: true
+
+networks:
+  oop_assignment_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.172.223.0/24
